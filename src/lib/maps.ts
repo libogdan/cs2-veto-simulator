@@ -13,11 +13,11 @@ export type MapName = (typeof MAP_POOL)[number];
 
 /** Files live in /public/maps */
 export const MAP_IMAGE: Record<MapName, string> = {
-  Dust2: '/maps/dust2.jpg',
-  Mirage: '/maps/mirage.jpg',
-  Inferno: '/maps/inferno.jpg',
-  Nuke: '/maps/nuke.jpg',
-  Cache: '/maps/cache.jpg',
-  Ancient: '/maps/ancient.jpg',
-  Anubis: '/maps/anubis.jpg',
+  Dust2: `${import.meta.env.BASE_URL}maps/dust2.jpg`,
+  Mirage: `${import.meta.env.BASE_URL}maps/mirage.jpg`,
+  Inferno: `${import.meta.env.BASE_URL}maps/inferno.jpg`,
+  Nuke: `${import.meta.env.BASE_URL}maps/nuke.jpg`,
+  Cache: `${import.meta.env.BASE_URL}maps/cache.jpg`,
+  Ancient: `${import.meta.env.BASE_URL}maps/ancient.jpg`,
+  Anubis: `${import.meta.env.BASE_URL}maps/anubis.jpg`,
 };
