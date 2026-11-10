@@ -61,19 +61,19 @@ export default function App() {
           <button
             type="button"
             onClick={() => setDrawerOpen(true)}
-            className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2 text-sm font-semibold transition hover:border-amber-400"
+            className="flex items-center gap-2 rounded-md bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-zinc-100"
           >
             History
-            <span className="rounded-full bg-amber-400 px-2 text-xs font-extrabold text-zinc-900">
+            <span className="text-xs font-semibold text-amber-400">
               {history.items.length}
             </span>
           </button>
         </div>
 
-        <h1 className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-center text-3xl font-extrabold tracking-wide text-transparent">
-          CS2 MAP VETO SIMULATOR
+        <h1 className="text-center text-2xl font-semibold tracking-tight text-zinc-100">
+          CS2 Map Veto Simulator
         </h1>
-        <p className="mb-6 mt-1 text-center text-sm text-zinc-500">
+        <p className="mb-8 mt-1 text-center text-sm text-zinc-500">
           Competitive map pick / ban — BO1, BO3 &amp; BO5
         </p>
 

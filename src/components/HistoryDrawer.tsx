@@ -55,14 +55,14 @@ export function HistoryDrawer({
         aria-hidden={!open}
         aria-label="Match history"
         className={cn(
-          'fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l border-zinc-800 bg-zinc-900 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] transition-[transform,visibility] duration-200',
+          'fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col bg-zinc-900 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] transition-[transform,visibility] duration-200',
           open ? 'visible translate-x-0' : 'invisible translate-x-full',
         )}
       >
-        <header className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
-          <div className="flex items-center gap-2 text-base font-bold">
+        <header className="flex items-center justify-between px-5 py-4">
+          <div className="flex items-center gap-2 text-base font-semibold">
             Match history
-            <span className="rounded-full border border-zinc-700 bg-zinc-800 px-2 py-0.5 text-xs font-bold text-zinc-400">
+            <span className="text-xs font-medium text-zinc-500">
               {items.length}
             </span>
           </div>
@@ -70,14 +70,14 @@ export function HistoryDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close history"
-            className="size-8 rounded-lg border border-zinc-700 text-zinc-400 transition hover:border-zinc-500 hover:text-zinc-100"
+            className="size-8 rounded-md text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100"
           >
             ✕
           </button>
         </header>
 
         {!storageOk && (
-          <div className="mx-4 mt-3 rounded-lg border border-amber-400/35 bg-amber-400/10 px-3 py-2 text-xs text-amber-400">
+          <div className="mx-4 mt-3 rounded-md bg-zinc-800 px-3 py-2 text-xs text-amber-400">
             Browser storage isn&apos;t available here, so history will be lost when you close this page.
           </div>
         )}
@@ -124,25 +124,25 @@ function HistoryItem({
   const scored = rec.maps.some((m) => mapWinner(m) !== null);
 
   return (
-    <article className="mb-3 rounded-xl border border-zinc-800 bg-zinc-800/60 p-3.5">
+    <article className="mb-3 rounded-md bg-zinc-800/50 p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="break-words font-bold">
+          <div className="break-words font-medium">
             {rec.teamA} <span className="mx-0.5 text-xs font-medium text-zinc-500">vs</span> {rec.teamB}
           </div>
           <div className="mt-1 text-xs text-zinc-500">
             {fmtDate(rec.createdAt)} ·{' '}
-            <span className="rounded-full border border-zinc-700 bg-zinc-900 px-2 py-0.5 text-[11px] font-bold">
+            <span className="text-[11px] font-medium text-zinc-400">
               BO{rec.bo}
             </span>
           </div>
         </div>
         <div className="shrink-0 text-right">
-          <div className="text-xl font-extrabold text-amber-400">
+          <div className="text-xl font-semibold text-zinc-100">
             {scored ? `${s.wa}–${s.wb}` : 'no score'}
           </div>
           {s.winner && (
-            <div className="max-w-32 break-words text-[11px] font-bold text-emerald-400">
+            <div className="max-w-32 break-words text-[11px] font-medium text-emerald-400">
               Winner: {nameOf(rec, s.winner)}
             </div>
           )}
@@ -153,12 +153,12 @@ function HistoryItem({
         {rec.maps.map((m) => (
           <div
             key={m.order}
-            className="flex items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1.5 text-sm"
+            className="flex items-center gap-2 rounded bg-zinc-900 px-2.5 py-1.5 text-sm"
           >
-            <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-amber-400 text-[11px] font-extrabold text-zinc-900">
+            <span className="flex size-5 shrink-0 items-center justify-center rounded bg-zinc-700 text-[11px] font-semibold text-zinc-100">
               {m.order}
             </span>
-            <span className="font-bold">{m.name}</span>
+            <span className="font-medium">{m.name}</span>
             <span className="min-w-0 flex-1 text-[11px] text-zinc-500">
               {m.kind === 'decider'
                 ? rec.bo === 1
@@ -168,7 +168,7 @@ function HistoryItem({
               · {nameOf(rec, m.sideBy)}: {m.side}
             </span>
             {!m.played ? (
-              <span className="text-[11px] font-extrabold uppercase text-red-400">not played</span>
+              <span className="text-[11px] font-semibold uppercase text-red-400">not played</span>
             ) : m.scoreA !== null && m.scoreB !== null ? (
               <b>
                 {m.scoreA}:{m.scoreB}
@@ -196,7 +196,7 @@ function HistoryItem({
         <button
           type="button"
           onClick={onOpen}
-          className="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-xs font-semibold transition hover:border-amber-400"
+          className="rounded-md bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300 transition hover:bg-zinc-700 hover:text-zinc-100"
         >
           Open / edit scores
         </button>

@@ -29,10 +29,10 @@ export function ConfirmButton({ label, confirmLabel, onConfirm }: Props) {
         }
       }}
       className={cn(
-        'rounded-md border px-3 py-1.5 text-xs font-semibold transition',
+        'rounded-md px-3 py-1.5 text-xs font-medium transition',
         armed
-          ? 'border-red-600 bg-red-600 text-white'
-          : 'border-red-500/50 bg-zinc-900 text-red-400 hover:border-red-400',
+          ? 'bg-red-500 text-white'
+          : 'bg-zinc-800 text-red-400 hover:bg-zinc-700',
       )}
     >
       {armed ? confirmLabel : label}

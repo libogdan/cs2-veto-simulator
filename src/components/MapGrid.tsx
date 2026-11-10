@@ -26,11 +26,10 @@ export function MapGrid({ state, interactive, onPick }: Props) {
             disabled={!clickable}
             onClick={() => onPick(map)}
             className={cn(
-              'group relative h-28 overflow-hidden rounded-xl border text-left transition',
-              pick?.kind === 'pick' && 'border-emerald-500',
-              pick?.kind === 'decider' && 'border-amber-400',
-              !pick && 'border-zinc-700',
-              clickable && 'cursor-pointer hover:-translate-y-0.5 hover:border-amber-400',
+              'group relative h-28 overflow-hidden rounded-md bg-zinc-800 text-left outline-2 -outline-offset-2 outline-transparent transition',
+              pick?.kind === 'pick' && 'outline-emerald-500',
+              pick?.kind === 'decider' && 'outline-amber-400',
+              clickable && 'cursor-pointer hover:outline-zinc-100',
               !clickable && 'cursor-default',
             )}
           >
@@ -39,32 +38,31 @@ export function MapGrid({ state, interactive, onPick }: Props) {
               alt=""
               className={cn(
                 'absolute inset-0 h-full w-full object-cover transition',
-                ban && 'opacity-40 grayscale',
-                clickable && 'group-hover:scale-105',
+                ban && 'opacity-30 grayscale',
               )}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+            <div className="absolute inset-0 bg-black/50" />
 
             {pick && (
-              <span className="absolute right-2 top-2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] font-bold text-zinc-200">
+              <span className="absolute right-2 top-2 text-[11px] font-semibold text-zinc-200">
                 #{pick.order}
               </span>
             )}
 
-            <div className="relative flex h-full flex-col justify-end gap-1 p-3">
-              <div className="text-base font-bold text-white drop-shadow">{map}</div>
+            <div className="relative flex h-full flex-col justify-end gap-0.5 p-3">
+              <div className="text-sm font-semibold text-white">{map}</div>
               {ban && (
-                <span className="w-fit rounded bg-red-500/25 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-red-300">
+                <span className="text-[10px] font-medium uppercase tracking-wide text-red-300">
                   Banned by {teamName(state, ban.team)}
                 </span>
               )}
               {pick?.kind === 'pick' && pick.by && (
-                <span className="w-fit rounded bg-emerald-500/25 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
+                <span className="text-[10px] font-medium uppercase tracking-wide text-emerald-300">
                   Picked by {teamName(state, pick.by)}
                 </span>
               )}
               {pick?.kind === 'decider' && (
-                <span className="w-fit rounded bg-amber-400/25 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-300">
+                <span className="text-[10px] font-medium uppercase tracking-wide text-amber-300">
                   {state.bo === 1 ? 'Last map' : 'Decider'}
                 </span>
               )}
