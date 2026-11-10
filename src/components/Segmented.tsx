@@ -8,17 +8,17 @@ interface Props<T extends string | number> {
 
 export function Segmented<T extends string | number>({ options, value, onChange }: Props<T>) {
   return (
-    <div className="flex overflow-hidden rounded-lg border border-zinc-700">
+    <div className="flex gap-1 rounded-md bg-zinc-800 p-1">
       {options.map((o) => (
         <button
           key={String(o.value)}
           type="button"
           onClick={() => onChange(o.value)}
           className={cn(
-            'flex-1 border-r border-zinc-700 px-3 py-2 text-sm font-semibold transition last:border-r-0',
+            'flex-1 rounded px-3 py-1.5 text-sm font-medium transition',
             o.value === value
-              ? 'bg-amber-400 text-zinc-900'
-              : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200',
+              ? 'bg-zinc-100 text-zinc-900'
+              : 'text-zinc-400 hover:text-zinc-100',
           )}
         >
           {o.label}

@@ -18,7 +18,7 @@ export function ResultsPanel({ record, storageOk, onPatchMap, onNew }: Props) {
   const scored = record.maps.some((m) => mapWinner(m) !== null);
 
   return (
-    <section className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+    <section className="mt-5 rounded-lg bg-zinc-900 p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <div className="text-base font-semibold">
@@ -32,28 +32,28 @@ export function ResultsPanel({ record, storageOk, onPatchMap, onNew }: Props) {
         <button
           type="button"
           onClick={onNew}
-          className="rounded-md border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 transition hover:border-zinc-500 hover:text-zinc-100"
+          className="rounded-md bg-zinc-800 px-3 py-1.5 text-xs text-zinc-400 transition hover:bg-zinc-700 hover:text-zinc-100"
         >
           New match
         </button>
       </div>
 
       {/* Series score */}
-      <div className="my-4 rounded-xl border border-zinc-800 bg-zinc-800/60 p-4 text-center">
+      <div className="my-4 rounded-md bg-zinc-800/50 p-4 text-center">
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <span className="max-w-36 truncate font-bold">{record.teamA}</span>
-          <b className={cn('text-3xl leading-none', series.winner === 'A' && 'text-emerald-400')}>
+          <span className="max-w-36 truncate font-medium">{record.teamA}</span>
+          <b className={cn('text-3xl font-semibold leading-none', series.winner === 'A' && 'text-emerald-400')}>
             {series.wa}
           </b>
           <span className="text-xl text-zinc-500">–</span>
-          <b className={cn('text-3xl leading-none', series.winner === 'B' && 'text-emerald-400')}>
+          <b className={cn('text-3xl font-semibold leading-none', series.winner === 'B' && 'text-emerald-400')}>
             {series.wb}
           </b>
-          <span className="max-w-36 truncate font-bold">{record.teamB}</span>
+          <span className="max-w-36 truncate font-medium">{record.teamB}</span>
         </div>
         <div className="mt-2 text-sm text-zinc-500">
           {series.winner ? (
-            <span className="font-bold text-emerald-400">Winner: {nameOf(record, series.winner)}</span>
+            <span className="font-medium text-emerald-400">Winner: {nameOf(record, series.winner)}</span>
           ) : scored ? (
             'Series in progress'
           ) : (
@@ -99,19 +99,19 @@ function MapRow({
   return (
     <div
       className={cn(
-        'flex flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-xl border border-zinc-800 bg-zinc-800/60 px-4 py-3',
+        'flex flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-md bg-zinc-800/50 px-4 py-3',
         !m.played && 'opacity-65',
       )}
     >
       <div className="flex min-w-48 flex-1 items-center gap-3">
-        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-amber-400 text-sm font-extrabold text-zinc-900">
+        <div className="flex size-7 shrink-0 items-center justify-center rounded bg-zinc-700 text-sm font-semibold text-zinc-100">
           {m.order}
         </div>
         <div>
-          <div className="font-bold">
+          <div className="font-medium">
             {m.name}
             {!m.played && (
-              <span className="ml-2 rounded bg-red-500/20 px-1.5 py-0.5 align-middle text-[10px] font-extrabold tracking-wide text-red-300">
+              <span className="ml-2 align-middle text-[10px] font-semibold tracking-wide text-red-400">
                 NOT PLAYED
               </span>
             )}
@@ -123,8 +123,8 @@ function MapRow({
       <div className="flex flex-wrap items-center gap-3">
         <span
           className={cn(
-            'rounded-md px-3 py-1 text-xs font-bold',
-            m.side === 'CT' ? 'bg-sky-500/15 text-sky-300' : 'bg-amber-500/15 text-amber-200',
+            'text-xs font-medium',
+            m.side === 'CT' ? 'text-sky-300' : 'text-amber-300',
           )}
         >
           {sideBy}: {m.side}
@@ -160,7 +160,7 @@ function MapRow({
                   ? onPatch({ played: false, scoreA: null, scoreB: null })
                   : onPatch({ played: true })
               }
-              className="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-xs font-semibold transition hover:border-amber-400"
+              className="rounded-md bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300 transition hover:bg-zinc-700 hover:text-zinc-100"
             >
               {m.played ? 'Mark as not played' : 'Mark as played'}
             </button>
@@ -197,8 +197,8 @@ function ScoreInput({
         aria-label={`${label} rounds`}
         onChange={(e) => onChange(parseScore(e.target.value))}
         className={cn(
-          'w-14 rounded-md border bg-zinc-950 px-1 py-1.5 text-center font-bold outline-none focus:border-amber-400 disabled:opacity-35',
-          win ? 'border-emerald-500 text-emerald-400' : 'border-zinc-700 text-zinc-100',
+          'w-14 rounded-md bg-zinc-800 px-1 py-1.5 text-center font-semibold outline-none ring-1 ring-transparent focus:ring-zinc-500 disabled:opacity-35',
+          win ? 'text-emerald-400' : 'text-zinc-100',
         )}
       />
       <span className="max-w-18 truncate text-[11px] text-zinc-500">{label}</span>

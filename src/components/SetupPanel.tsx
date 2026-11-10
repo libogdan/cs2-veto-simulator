@@ -7,8 +7,8 @@ interface Props {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 outline-none focus:border-amber-400';
-const labelClass = 'mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500';
+  'w-full rounded-md bg-zinc-800 px-3 py-2 text-sm text-zinc-100 outline-none ring-1 ring-transparent focus:ring-zinc-500';
+const labelClass = 'mb-1.5 block text-xs text-zinc-500';
 
 export function SetupPanel({ onStart }: Props) {
   const [teamA, setTeamA] = useState('You');
@@ -17,7 +17,7 @@ export function SetupPanel({ onStart }: Props) {
   const [first, setFirst] = useState<FirstBan>('coinflip');
 
   return (
-    <section className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+    <section className="rounded-lg bg-zinc-900 p-6">
       <div className="grid gap-4 sm:grid-cols-2">
         <label>
           <span className={labelClass}>Your team name</span>
@@ -68,7 +68,7 @@ export function SetupPanel({ onStart }: Props) {
         onClick={() =>
           onStart({ bo, first, teamA: teamA.trim() || 'You', teamB: teamB.trim() || 'Opponent' })
         }
-        className="mt-5 w-full rounded-lg bg-gradient-to-r from-orange-600 to-amber-400 py-3 font-bold tracking-wide text-zinc-900 transition hover:brightness-110"
+        className="mt-6 w-full rounded-md bg-amber-400 py-2.5 text-sm font-semibold text-zinc-900 transition hover:bg-amber-300"
       >
         Start Veto
       </button>
